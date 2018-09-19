@@ -30,7 +30,7 @@ public class ScheduledTasks {
 //        log.info("The time is now {}", dateFormat.format(new Date()));
 //    }
 
-    @Scheduled(cron="0 42 0 * * *")
+    @Scheduled(cron="0 0 0-23 * * *")
     public void loadPersonsFromPbd() {
         log.info("Scheduled task loadPersonsFromPbd started");
         List<PbdPerson> persons = (List<PbdPerson>) pbdPersonRepository.findAll();
