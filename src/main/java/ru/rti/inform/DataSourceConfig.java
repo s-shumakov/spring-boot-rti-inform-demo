@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
-import ru.rti.inform.entity.Employee;
+import ru.rti.inform.entity.Person;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -19,8 +19,10 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "employeeEntityManager",
-        transactionManagerRef = "employeeTransactionManager",
+        entityManagerFactoryRef = "mainEntityManager",
+//        entityManagerFactoryRef = "personEntityManager",
+        transactionManagerRef = "mainTransactionManager",
+//        transactionManagerRef = "personTransactionManager",
         basePackages = "ru.rti.inform.repository"
 )
 public class DataSourceConfig {
@@ -29,35 +31,30 @@ public class DataSourceConfig {
 
     @Bean
     @Primary
-    PlatformTransactionManager employeeTransactionManager(EntityManagerFactory employeeEntityManager) {
-        return new JpaTransactionManager(employeeEntityManager);
+    PlatformTransactionManager mainTransactionManager(EntityManagerFactory mainEntityManager) {
+        return new JpaTransactionManager(mainEntityManager);
     }
 
     @Bean
     @Primary
-    LocalContainerEntityManagerFactoryBean employeeEntityManager(EntityManagerFactoryBuilder builder) {
+    LocalContainerEntityManagerFactoryBean mainEntityManager(EntityManagerFactoryBuilder builder) {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", ddlAuto);  //"org.hibernate.dialect.SQLServer2008Dialect"
+        properties.setProperty("hibernate.hbm2ddl.auto", ddlAuto);
 
         LocalContainerEntityManagerFactoryBean em = builder
-                .dataSource(employeeDataSource())
-                .packages(Employee.class)
-                .persistenceUnit("employees")
+                .dataSource(appDataSource())
+                .packages("ru.rti.inform.entity")
+                .persistenceUnit("mainPersistenceUnit")
                 .build();
         em.setJpaProperties(properties);
 
         return em;
-//        return builder
-//                .dataSource(employeeDataSource())
-//                .packages(Employee.class)
-//                .persistenceUnit("employees")
-//                .build();
     }
 
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "app.datasource")
-    DataSource employeeDataSource() {
+    DataSource appDataSource() {
         return DataSourceBuilder
                 .create()
                 .build();

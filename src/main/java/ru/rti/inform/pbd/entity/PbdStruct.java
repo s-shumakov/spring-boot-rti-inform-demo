@@ -1,23 +1,24 @@
-package ru.rti.inform.entity;
+package ru.rti.inform.pbd.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class OrgPosition {
+@Table(schema = "IN_1C", name = "Structs_RTI")
+public class PbdStruct {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    @Column(name = "organization_id")
+    private Long id;
 
     private String name;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

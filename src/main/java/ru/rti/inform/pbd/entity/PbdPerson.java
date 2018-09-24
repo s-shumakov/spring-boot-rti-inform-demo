@@ -1,4 +1,4 @@
-package ru.rti.inform.pbd;
+package ru.rti.inform.pbd.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 public class PbdPerson {
     @Id
     @Column(name = "person_id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "last_name")
     private String lastName;
@@ -29,11 +29,11 @@ public class PbdPerson {
     @Column(name = "Fired_Flag")
     private boolean fired;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

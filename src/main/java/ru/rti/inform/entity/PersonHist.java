@@ -5,6 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class EmployeeHist {
+public class PersonHist {
 
 }

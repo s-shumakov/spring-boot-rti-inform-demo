@@ -1,7 +1,7 @@
 package ru.rti.inform.pbd.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.rti.inform.pbd.PbdPerson;
+import ru.rti.inform.pbd.entity.PbdPerson;
 
-public interface PbdPersonRepository extends CrudRepository<PbdPerson, Integer> {
+public interface PbdPersonRepository extends CrudRepository<PbdPerson, Long> {
 }

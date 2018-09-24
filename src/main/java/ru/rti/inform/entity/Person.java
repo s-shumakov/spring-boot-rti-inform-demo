@@ -7,10 +7,10 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Employee {
+public class Person {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String lastName;
 
@@ -28,23 +28,15 @@ public class Employee {
 
     private LocalDate fireDate;
 
-//    private OrgUnit orgUnit;
-
-//    private OrgPosition orgPosition;
-
-//    private Grade grade;
-
     private String phone;
 
     private String rate;
 
-//    private Passport passport;
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -111,31 +103,6 @@ public class Employee {
     public void setFireDate(LocalDate fireDate) {
         this.fireDate = fireDate;
     }
-/*
-    public OrgUnit getOrgUnit() {
-        return orgUnit;
-    }
-
-    public void setOrgUnit(OrgUnit orgUnit) {
-        this.orgUnit = orgUnit;
-    }
-
-    public OrgPosition getOrgPosition() {
-        return orgPosition;
-    }
-
-    public void setOrgPosition(OrgPosition orgPosition) {
-        this.orgPosition = orgPosition;
-    }
-
-    public Grade getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
-*/
 
     public String getPhone() {
         return phone;
@@ -152,13 +119,4 @@ public class Employee {
     public void setRate(String rate) {
         this.rate = rate;
     }
-/*
-    public Passport getPassport() {
-        return passport;
-    }
-
-    public void setPassport(Passport passport) {
-        this.passport = passport;
-    }
-    */
 }
