@@ -23,6 +23,7 @@ import ru.rti.inform.repository.StructRepository;
 import ru.rti.inform.schedule.ScheduledTasks;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class PbdLoader {
@@ -107,10 +108,15 @@ public class PbdLoader {
         for (PbdAssignment pbdAssignment : pbdAssignments) {
             Assignment assignment = new Assignment();
             assignment.setId(pbdAssignment.getId());
-            assignment.setPerson(personRepository.findById(pbdAssignment.getPersonId()).get());
-            assignment.setPosition(positionRepository.findById(pbdAssignment.getPositionId()).get());
-            assignment.setStruct(structRepository.findById(pbdAssignment.getOrganizationId()).get());
-            asignmentRepository.save(assignment);
+            try {
+                assignment.setPerson(personRepository.findById(pbdAssignment.getPersonId()).get());
+                assignment.setPosition(positionRepository.findById(pbdAssignment.getPositionId()).get());
+                assignment.setStruct(structRepository.findById(pbdAssignment.getOrganizationId()).get());
+                asignmentRepository.save(assignment);
+            } catch (NoSuchElementException e) {
+                log.error(e.getMessage());
+                log.info("assignment: {}", assignment.getId());
+            }
         }
 
         List<Assignment> assignments = (List<Assignment>) asignmentRepository.findAll();
