@@ -11,6 +11,10 @@ public class Grade {
 
     private String name;
 
+    private Integer rate;
+
+    private String location;
+
     public Integer getId() {
         return id;
     }

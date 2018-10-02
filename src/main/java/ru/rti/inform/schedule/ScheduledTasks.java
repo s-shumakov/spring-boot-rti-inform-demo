@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import ru.rti.inform.PbdLoader;
+import ru.rti.inform.loader.PbdLoader;
 import ru.rti.inform.pbd.repository.PbdPersonRepository;
 import ru.rti.inform.repository.PersonRepository;
 
@@ -35,9 +35,7 @@ public class ScheduledTasks {
         log.info("Scheduled task loadPersonsFromPbd started");
 
         pbdLoader.loadPersonsFromPbd();
-        pbdLoader.loadPositionsFromPbd();
         pbdLoader.loadStructsFromPbd();
-        pbdLoader.loadAssignmentsFromPbd();
 
         log.info("Scheduled task loadPersonsFromPbd ended");
     }

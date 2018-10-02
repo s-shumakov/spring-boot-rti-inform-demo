@@ -21,7 +21,7 @@ import javax.sql.DataSource;
         transactionManagerRef = "pbdTransactionManager",
         basePackages = "ru.rti.inform.pbd.repository"
 )
-public class PbdDataSourceConfig {
+public class PbdPersistenceConfig {
     @Bean
     PlatformTransactionManager pbdTransactionManager(@Qualifier("pbdEntityManager") EntityManagerFactory pbdEntityManager) {
         return new JpaTransactionManager(pbdEntityManager);

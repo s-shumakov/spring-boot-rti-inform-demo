@@ -1,16 +1,17 @@
 package ru.rti.inform.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDate;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private Long personId1c;
 
     private String lastName;
 
@@ -20,6 +21,7 @@ public class Person {
 
     private String tabNum;
 
+    @Email
     private String email;
 
     private LocalDate birthDate;
@@ -30,7 +32,17 @@ public class Person {
 
     private String phone;
 
-    private String rate;
+    @ManyToOne()
+    @JoinColumn(name = "gradeId")
+    private Grade grade;
+
+    @ManyToOne()
+    @JoinColumn(name = "structId")
+    private Struct struct;
+
+    @ManyToOne()
+    @JoinColumn(name = "positionId")
+    private Position position;
 
     public Long getId() {
         return id;
@@ -112,11 +124,11 @@ public class Person {
         this.phone = phone;
     }
 
-    public String getRate() {
-        return rate;
+    public Long getPersonId1c() {
+        return personId1c;
     }
 
-    public void setRate(String rate) {
-        this.rate = rate;
+    public void setPersonId1c(Long personId1c) {
+        this.personId1c = personId1c;
     }
 }

@@ -7,17 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.rti.inform.entity.Person;
 import ru.rti.inform.entity.Struct;
-import ru.rti.inform.pbd.entity.PbdAssignment;
+import ru.rti.inform.loader.PbdLoader;
 import ru.rti.inform.pbd.entity.PbdPerson;
-import ru.rti.inform.pbd.entity.PbdPosition;
 import ru.rti.inform.pbd.entity.PbdStruct;
-import ru.rti.inform.pbd.repository.PbdAssignmentRepository;
 import ru.rti.inform.pbd.repository.PbdPersonRepository;
-import ru.rti.inform.pbd.repository.PbdPositionRepository;
 import ru.rti.inform.pbd.repository.PbdStructRepository;
-import ru.rti.inform.repository.AssignmentRepository;
 import ru.rti.inform.repository.PersonRepository;
-import ru.rti.inform.repository.PositionRepository;
 import ru.rti.inform.repository.StructRepository;
 
 import java.time.LocalDate;
@@ -33,22 +28,10 @@ public class RtiInformApplicationTests {
 	PbdPersonRepository pbdPersonRepository;
 
 	@Autowired
-	PbdAssignmentRepository pbdAssignmentRepository;
-
-	@Autowired
-	PbdPositionRepository pbdPositionRepository;
-
-	@Autowired
 	PbdStructRepository pbdStructRepository;
 
 	@Autowired
 	PersonRepository personRepository;
-
-	@Autowired
-	AssignmentRepository sasignmentRepository;
-
-	@Autowired
-	PositionRepository positionRepository;
 
 	@Autowired
 	StructRepository structRepository;
@@ -64,22 +47,6 @@ public class RtiInformApplicationTests {
 	public void findAllPbdPersons() {
 		List<PbdPerson> result = (List<PbdPerson>) pbdPersonRepository.findAll();
 		System.out.println("PbdPerson count: " + result.size());
-		assertNotNull(result);
-		assertTrue(result.size() > 0);
-	}
-
-	@Test
-	public void findAllPbdAssignments() {
-		List<PbdAssignment> result = (List<PbdAssignment>) pbdAssignmentRepository.findAll();
-		System.out.println("PbdAssignment count: " + result.size());
-		assertNotNull(result);
-		assertTrue(result.size() > 0);
-	}
-
-	@Test
-	public void findAllPbdPositions() {
-		List<PbdPosition> result = (List<PbdPosition>) pbdPositionRepository.findAll();
-		System.out.println("PbdPosition count: " + result.size());
 		assertNotNull(result);
 		assertTrue(result.size() > 0);
 	}
@@ -152,8 +119,7 @@ public class RtiInformApplicationTests {
 	@Test
 	public void loadFromPbd() {
 		pbdLoader.loadPersonsFromPbd();
-		pbdLoader.loadPositionsFromPbd();
 		pbdLoader.loadStructsFromPbd();
-		pbdLoader.loadAssignmentsFromPbd();
 	}
+
 }

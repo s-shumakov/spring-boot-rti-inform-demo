@@ -20,12 +20,10 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(
         entityManagerFactoryRef = "mainEntityManager",
-//        entityManagerFactoryRef = "personEntityManager",
         transactionManagerRef = "mainTransactionManager",
-//        transactionManagerRef = "personTransactionManager",
         basePackages = "ru.rti.inform.repository"
 )
-public class DataSourceConfig {
+public class PersistenceConfig {
     @Value("${app.jpa.hibernate.ddl-auto}")
     private String ddlAuto;
 

@@ -1,13 +1,11 @@
 package ru.rti.inform.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 public class Position {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
     private String name;
